@@ -1,17 +1,27 @@
 from peewee import *
 import datetime
+from flask_login import UserMixin
+
 
 DATABASE = SqliteDatabase('burgers_beers.sqlite')
 
+class User(UserMixin, Model):
+    username = CharField(unique=True)
+    email = CharField(unique=True)
+    password = CharField() 
+
+    class Meta:
+        database = DATABASE
 
 class Places(Model):
-    name = CharField()
-    location = CharField()
+    name = CharField() 
+    location = CharField() 
     rating = int
     likes = int
     comments = CharField()
     imageURL = CharField()
     private = BooleanField()
+    user = ForeignKeyField(User, backref='places')
     created_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
@@ -20,7 +30,7 @@ class Places(Model):
 
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([Places], safe=True)
+    DATABASE.create_tables([User, Places], safe=True)
     print("TABLES Created")
     DATABASE.close()
 

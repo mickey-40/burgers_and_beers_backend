@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 from resources.places import places
 from resources.user import user
 import models
+
+from flask_cors import CORS
+
+
 DEBUG = True
 PORT=8000
 
@@ -29,24 +33,9 @@ def load_user(userid):
     except:
         return None
 
-# @app.before_request
-# def before_request():
-#     """Connect to the database before each request."""
-#     g.db = models.DATABASE
-#     g.db.connect()
+CORS(places, origins=['http://localhost:3000'], supports_credentials=True)
 
-
-# @app.after_request
-# def after_request(response):
-#     """Close the database connection after each request."""
-#     g.db.close()
-#     return response
-
-
-# The default URL ends in / ("my-website.com/").
-# @app.route('/')
-# def index():
-#     return 'hi'
+CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 
 # Run the app when the program starts!
 if __name__ == '__main__':

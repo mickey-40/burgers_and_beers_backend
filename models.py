@@ -16,8 +16,8 @@ class User(UserMixin, Model):
 class Places(Model):
     name = CharField() 
     location = CharField() 
-    rating = int
-    likes = int
+    rating = IntegerField
+    likes = IntegerField
     comments = CharField()
     imageURL = CharField()
     private = BooleanField()

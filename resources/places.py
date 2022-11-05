@@ -14,7 +14,7 @@ def places_index():
   current_user_places_dicts = [model_to_dict(places) for places in current_user.places] 
 
   for places_dict in current_user_places_dicts:
-      places_dict['owner'].pop('password')
+      places_dict['user'].pop('password')
   return jsonify({
         'data': current_user_places_dicts,
         'message': f"Successfully found {len(current_user_places_dicts)} places",
@@ -29,7 +29,7 @@ def create_places():
     print(new_places)
     places_dict = model_to_dict(new_places)
 
-    places_dict['owner'].pop('password')
+    places_dict['user'].pop('password')
 
     return jsonify(
         data=places_dict,
@@ -39,7 +39,7 @@ def create_places():
 
 @places.route('/<id>', methods=['GET'])
 def get_one_places(id):
-    places = models.Place.get_by_id(id)
+    places = models.Places.get_by_id(id)
     print(places)
     return jsonify(
         data = model_to_dict(places),

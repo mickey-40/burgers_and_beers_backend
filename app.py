@@ -3,6 +3,8 @@ from flask_login import LoginManager
 
 import os
 from dotenv import load_dotenv
+load_dotenv()
+
 from resources.places import places
 from resources.user import user
 import models
@@ -23,9 +25,7 @@ login_manager = LoginManager()
 
 login_manager.init_app(app)
 
-app.register_blueprint(places, url_prefix='/api/v1/places')
 
-app.register_blueprint(user, url_prefix='/api/v1/user')
 @login_manager.user_loader
 def load_user(userid):
     try:
@@ -33,9 +33,13 @@ def load_user(userid):
     except:
         return None
 
-CORS(places, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(places, origins=['http://localhost:3000','*'], supports_credentials=True)
 
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000','*'], supports_credentials=True)
+
+app.register_blueprint(places, url_prefix='/api/v1/places')
+
+app.register_blueprint(user, url_prefix='/api/v1/user')
 
 # Run the app when the program starts!
 if __name__ == '__main__':

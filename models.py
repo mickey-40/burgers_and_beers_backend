@@ -14,13 +14,13 @@ class User(UserMixin, Model):
         database = DATABASE
 
 class Places(Model):
-    name = CharField() 
-    location = CharField() 
-    rating = IntegerField
-    likes = IntegerField
-    comments = CharField()
+    name = CharField(50,null=True) 
+    location = CharField(50) 
+    rating = IntegerField(default=0)
+    likes = IntegerField(default=0)
+    comments = TextField()
     imageURL = CharField()
-    private = BooleanField()
+    private = BooleanField(default=False)
     user = ForeignKeyField(User, backref='places')
     created_at = DateTimeField(default=datetime.datetime.now)
 

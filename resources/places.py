@@ -25,7 +25,16 @@ def places_index():
 def create_places():
     payload = request.get_json() # this is like req.body in express
     print(payload)
-    new_places = models.Places.create(name=payload['name'], location=payload['location'],rating=payload['rating'],likes=payload['likes'],comments=payload['comments'],imageURL=payload['imageURL'],private=payload['private'],user=current_user.id)
+    new_places = models.Places.create(
+        name=payload['name'], 
+        location=payload['location'],
+        rating=payload['rating'],
+        likes=payload['likes'],
+        comments=payload['comments'],
+        imageURL=payload['imageURL'],
+        private=payload['private'],
+        user=current_user.id
+        )
     print(new_places)
     places_dict = model_to_dict(new_places)
 

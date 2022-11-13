@@ -4,6 +4,7 @@ import os
 from playhouse.db_url import connect
 from flask_login import UserMixin
 
+# connect(os.environ.get('DATABASE_URL') or 
 
 DATABASE = SqliteDatabase('burgers_beers.sqlite')
 
@@ -22,7 +23,7 @@ class Places(Model):
     likes = IntegerField(default=0)
     comments = TextField()
     imageURL = CharField()
-    private = BooleanField(default=False)
+    privateUse = BooleanField(default=False)
     user = ForeignKeyField(User, backref='places')
     created_at = DateTimeField(default=datetime.datetime.now)
 

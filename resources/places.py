@@ -56,7 +56,7 @@ def get_one_places(id):
         status = 200
     ), 200
 
-@places.route('/<id>', methods=["PUT"])
+@places.route('/edit/<id>', methods=["PUT"])
 def update_places(id):
     payload = request.get_json()
     query = models.Places.update(**payload).where(models.Places.id == id)

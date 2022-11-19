@@ -45,24 +45,6 @@ app.register_blueprint(places, url_prefix='/api/v1/places')
 app.register_blueprint(user, url_prefix='/api/v1/user')
 
 
-# we don't want to hog up the SQL connection pool
-# so we should connect to the DB before every request
-# and close the db connection after every request
-
-# @app.before_request # use this decorator to cause a function to run before reqs
-# def before_request():
-
-#     """Connect to the db before each request"""
-#     print("you should see this before each request") # optional -- to illustrate that this code runs before each request -- similar to custom middleware in express.  you could also set it up for specific blueprints only.
-#     models.DATABASE.connect()
-
-#     @after_this_request # use this decorator to Executes a function after this request
-#     def after_request(response):
-#         """Close the db connetion after each request"""
-#         print("you should see this after each request") # optional -- to illustrate that this code runs after each request
-#         models.DATABASE.close()
-#         return response # go ahead and send response back to client
-#                       # (in our case this will be some JSON)
 
 
 # ADD THESE THREE LINES -- because we need to initialize the

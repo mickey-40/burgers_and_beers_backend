@@ -47,7 +47,6 @@ def create_places():
         likes=payload['likes'],
         comments=payload['comments'],
         imageURL=payload['imageURL'],
-        privateUse=payload['privateUse'],
         user=current_user.id
         )
     print(new_places)

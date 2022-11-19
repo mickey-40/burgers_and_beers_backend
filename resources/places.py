@@ -6,7 +6,7 @@ from flask_login import current_user
 
 places = Blueprint('places', 'places')
 
-@places.route('/', methods=['GET'])
+@places.route('/private', methods=['GET'])
 def places_index():
   result= models.Places.select()
   print('result of places select query')
@@ -18,6 +18,21 @@ def places_index():
   return jsonify({
         'data': current_user_places_dicts,
         'message': f"Successfully found {len(current_user_places_dicts)} places",
+        'status': 200
+    }), 200
+
+@places.route('/', methods=['GET'])
+def places_all():
+  result= models.Places.select()
+  print('result of places select query')
+  print(result)
+  places_dicts = [model_to_dict(places) for places in result] 
+
+  for places_dict in places_dicts:
+      places_dict['user'].pop('password')
+  return jsonify({
+        'data': places_dicts,
+        'message': f"Successfully found {len(places_dicts)} places",
         'status': 200
     }), 200
 

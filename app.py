@@ -7,7 +7,7 @@ load_dotenv()
 
 from resources.places import places
 from resources.user import user
-from resources.allplaces import allplaces
+
 import models
 
 from flask_cors import CORS
@@ -38,13 +38,12 @@ CORS(places, origins=['http://localhost:3000'], supports_credentials=True)
 
 CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 
-CORS(allplaces, origins=['http://localhost:3000'], supports_credentials=True)
+
 
 app.register_blueprint(places, url_prefix='/api/v1/places')
 
 app.register_blueprint(user, url_prefix='/api/v1/user')
 
-app.register_blueprint(allplaces, url_prefix='/api/v1/allplaces')
 
 # we don't want to hog up the SQL connection pool
 # so we should connect to the DB before every request

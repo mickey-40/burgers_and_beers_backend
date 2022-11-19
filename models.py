@@ -23,7 +23,6 @@ class Places(Model):
     likes = IntegerField(default=0)
     comments = TextField()
     imageURL = CharField()
-    privateUse = BooleanField(default=False)
     user = ForeignKeyField(User, backref='places')
     created_at = DateTimeField(default=datetime.datetime.now)
 

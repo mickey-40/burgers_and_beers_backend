@@ -65,6 +65,7 @@ def logout():
     # following the logout here: https://flask-login.readthedocs.io/en/latest/#login-example
     logout_user()
     return jsonify(
+        
         data={},
         message="Successfully logged out.",
         status=200

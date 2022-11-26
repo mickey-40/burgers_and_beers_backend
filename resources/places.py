@@ -1,12 +1,13 @@
 import models
 from flask import Blueprint, request, jsonify
 from playhouse.shortcuts import model_to_dict
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
 places = Blueprint('places', 'places')
 
 @places.route('/private', methods=['GET'])
+@login_required
 def places_index():
   result= models.Places.select()
   print('result of places select query')
@@ -37,6 +38,7 @@ def places_all():
     }), 200
 
 @places.route('/', methods=['POST'])
+@login_required
 def create_places():
     payload = request.get_json() # this is like req.body in express
     print(payload)
@@ -71,6 +73,7 @@ def get_one_places(id):
     ), 200
 
 @places.route('/edit/<id>', methods=["PUT"])
+@login_required
 def update_places(id):
     payload = request.get_json()
     query = models.Places.update(**payload).where(models.Places.id == id)
@@ -82,6 +85,7 @@ def update_places(id):
     ), 200
 
 @places.route('/<id>', methods=['DELETE'])
+@login_required
 def delete_places(id):
     query = models.Places.delete().where(models.Places.id == id)
     query.execute()

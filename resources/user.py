@@ -2,7 +2,7 @@ import models
 
 from flask import request, jsonify, Blueprint
 from flask_bcrypt import generate_password_hash, check_password_hash
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user,login_required
 from playhouse.shortcuts import model_to_dict
 
 user = Blueprint('users', 'user')
@@ -61,6 +61,7 @@ def get_logged_in_user():
 
 
 @user.route('/logout', methods=['GET'])
+@login_required
 def logout():
     # following the logout here: https://flask-login.readthedocs.io/en/latest/#login-example
     logout_user()

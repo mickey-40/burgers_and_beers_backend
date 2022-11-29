@@ -14,7 +14,7 @@ class User(UserMixin, Model):
     password = CharField() 
 
     class Meta:
-        database = os.environ.get('DATABASE_URL')
+        database = Database
 
 class Places(Model):
     name = CharField(50,null=True) 
@@ -27,12 +27,12 @@ class Places(Model):
     created_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
-        database = os.environ.get('DATABASE_URL')
+        database = Database
 
 
 def initialize():
-    os.environ.get('DATABASE_URL').connect()
-    os.environ.get('DATABASE_URL').create_tables([User, Places], safe=True)
+    Database.connect()
+    Database.create_tables([User, Places], safe=True)
     print("TABLES Created")
-    os.environ.get('DATABASE_URL').close()
+    Database.close()
 

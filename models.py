@@ -4,9 +4,9 @@ import os
 from playhouse.db_url import connect
 from flask_login import UserMixin
 
-# connect(os.environ.get('DATABASE_URL') or 
+connect(os.environ.get('DATABASE_URL') or 
 
-DATABASE = SqliteDatabase('burgers_beers.sqlite')
+# DATABASE = SqliteDatabase('burgers_beers.sqlite')
 
 class User(UserMixin, Model):
     username = CharField(unique=True)

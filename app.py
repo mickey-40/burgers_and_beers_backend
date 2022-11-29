@@ -14,7 +14,7 @@ from flask_cors import CORS
 
 
 DEBUG = True
-PORT=8000
+PORT=os.environ.get("PORT")
 
 # Initialize an instance of the Flask class.
 # This starts the website!

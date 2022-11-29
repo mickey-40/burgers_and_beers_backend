@@ -4,8 +4,7 @@ import os
 from playhouse.db_url import connect
 from flask_login import UserMixin
 
-connect(os.environ.get('DATABASE_URL')) 
-Database=os.environ.get('DATABASE_URL')
+DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///burgers_beers.sqlite')
 # DATABASE = SqliteDatabase('burgers_beers.sqlite')
 
 class User(UserMixin, Model):
@@ -14,7 +13,7 @@ class User(UserMixin, Model):
     password = CharField() 
 
     class Meta:
-        database = Database
+        database = DATABASE
 
 class Places(Model):
     name = CharField(50,null=True) 
@@ -27,12 +26,12 @@ class Places(Model):
     created_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
-        database = Database
+        database = DATABASE
 
 
 def initialize():
-    Database.connect()
-    Database.create_tables([User, Places], safe=True)
+    DATABASE.connect()
+    DATABASE.create_tables([User, Places], safe=True)
     print("TABLES Created")
-    Database.close()
+    DATABASE.close()
 

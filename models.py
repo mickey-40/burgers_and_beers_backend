@@ -5,7 +5,7 @@ from playhouse.db_url import connect
 from flask_login import UserMixin
 
 connect(os.environ.get('DATABASE_URL')) 
-
+Database=os.environ.get('DATABASE_URL')
 # DATABASE = SqliteDatabase('burgers_beers.sqlite')
 
 class User(UserMixin, Model):

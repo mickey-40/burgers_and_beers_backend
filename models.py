@@ -6,7 +6,7 @@ from flask_login import UserMixin
 
 if 'ON_HEROKU' in os.environ:
 
-    DATABASE = connect(os.environ.get('DATABASE_URL') 
+    DATABASE = connect(os.environ.get('DATABASE_URL')) 
 
 else:
     DATABASE = SqliteDatabase('burgers_beers.sqlite')

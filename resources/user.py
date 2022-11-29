@@ -43,7 +43,7 @@ def login():
   except models.DoesNotExist:
     return jsonify(data={}, status={'code': 401, 'message': 'Username or Password does not match'}), 401
 
-# another route just for demonstration
+
 # it will show us who is logged in, we can access that via current_user
 # this is what setting up user_loader in app.py allowed us to do
 @user.route('/logged_in_user', methods=['GET'])

@@ -34,9 +34,9 @@ def load_user(userid):
     except:
         return None
 
-CORS(places, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(places, origins=['http://localhost:3000','https://burgers-and-beers.herokuapp.com'], supports_credentials=True)
 
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000','https://burgers-and-beers.herokuapp.com'], supports_credentials=True)
 
 
 

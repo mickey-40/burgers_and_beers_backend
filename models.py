@@ -4,7 +4,12 @@ import os
 from playhouse.db_url import connect
 from flask_login import UserMixin
 
-DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///burgers_beers.sqlite')
+if 'ON_HEROKU' in os.environ:
+
+    DATABASE = connect(os.environ.get('DATABASE_URL') 
+
+else:
+    DATABASE = SqliteDatabase('burgers_beers.sqlite')
 # DATABASE = SqliteDatabase('burgers_beers.sqlite')
 
 class User(UserMixin, Model):
